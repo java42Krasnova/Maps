@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.TreeSet;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -45,6 +46,8 @@ class AutoCompletionTest {
 		assertIterableEquals(Arrays.asList(wordsStartABC), autoCompletion.getCompletionOptions("abc"));
 		assertIterableEquals(Arrays.asList(wordsStartB), autoCompletion.getCompletionOptions("B"));
 		assertIterableEquals(Arrays.asList(wordsStartAB), autoCompletion.getCompletionOptions("ab"));
+		assertIterableEquals(new TreeSet<String>(), autoCompletion.getCompletionOptions("fdkf"));
+
 
 	}
 

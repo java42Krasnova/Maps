@@ -31,7 +31,7 @@ public class AutoCompletionMapImpl implements AutoCompletion {
 			return new ArrayList<>();
 		}
 		char keyForSearch = getkey(prefix);		
-		return words.get(keyForSearch).subSet(prefix, getPrefixLimit(prefix));
+		return words.getOrDefault(keyForSearch, new TreeSet<String>(String.CASE_INSENSITIVE_ORDER)).subSet(prefix, getPrefixLimit(prefix));
 	}
 	/**
 	 * removes words matching a given predicate
