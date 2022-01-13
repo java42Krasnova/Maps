@@ -2,6 +2,7 @@ package telran.util.words;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -27,6 +28,7 @@ class AutoCompletionTest {
 	@Test
 	void addRemoveTest() {
 		//adding
+		assertFalse(autoCompletion.addWord(""));
 		assertTrue(autoCompletion.addWord("mirrow"));
 		//adding existing
 		assertFalse(autoCompletion.addWord("mirrow"));
@@ -34,12 +36,12 @@ class AutoCompletionTest {
 		assertTrue(autoCompletion.removeWord("mirrow"));
 		//removing no existing 
 		assertFalse(autoCompletion.removeWord("mirrow"));
-		
+		assertFalse(autoCompletion.removeWord(""));
 	}
 
 	@Test
 	void testCompletionOptions() {
-
+		assertIterableEquals(new ArrayList<>(), autoCompletion.getCompletionOptions(""));
 		assertIterableEquals(Arrays.asList(wordsStartABC), autoCompletion.getCompletionOptions("abc"));
 		assertIterableEquals(Arrays.asList(wordsStartB), autoCompletion.getCompletionOptions("B"));
 		assertIterableEquals(Arrays.asList(wordsStartAB), autoCompletion.getCompletionOptions("ab"));

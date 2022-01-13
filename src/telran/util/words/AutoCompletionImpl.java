@@ -1,6 +1,6 @@
 package telran.util.words;
 import java.util.*;
-public class AutoCompletionImpl implements AutoCompletion {
+public class AutoCompletionImpl implements AutoCompletion  {
 	private TreeSet<String> words = new TreeSet<String>(String.CASE_INSENSITIVE_ORDER);
  public AutoCompletionImpl() {
 		
@@ -26,12 +26,5 @@ public class AutoCompletionImpl implements AutoCompletion {
 		
 		return words.subSet(prefix, getPrefixLimit(prefix));
 	}
-	// V.R. It very bad idea to use static by this way
-	 static String getPrefixLimit(String prefix) {
-		char lastChar = prefix.charAt(prefix.length() - 1);
-		char limitChar = (char) (lastChar + 1);
-		return prefix.substring(0, prefix.length() - 1) + limitChar;
-
-	}
-
+	
 }
