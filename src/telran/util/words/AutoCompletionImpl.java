@@ -26,6 +26,7 @@ public class AutoCompletionImpl implements AutoCompletion {
 		
 		return words.subSet(prefix, getPrefixLimit(prefix));
 	}
+	// V.R. It very bad idea to use static by this way
 	 static String getPrefixLimit(String prefix) {
 		char lastChar = prefix.charAt(prefix.length() - 1);
 		char limitChar = (char) (lastChar + 1);
