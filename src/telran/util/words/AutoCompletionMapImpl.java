@@ -22,15 +22,21 @@ public class AutoCompletionMapImpl implements AutoCompletion {
 
 	@Override
 	public boolean removeWord(String word) {
+		// V.R. TreeSet is empty, so String.CASE_INSENSITIVE_ORDER is redundant
 		return   word.isEmpty()?false: words.getOrDefault(getkey(word), new TreeSet<>(String.CASE_INSENSITIVE_ORDER)).remove(word);
 	}
 
 	@Override
 	public Iterable<String> getCompletionOptions(String prefix) {
+		/* V.R.
+		 * Why different container types are used for emply Iterable<String>?
+		 * ArrayList and TreeSet
+		 */
 		if(prefix.isEmpty()) {
 			return new ArrayList<>();
 		}
 		char keyForSearch = getkey(prefix);		
+		// V.R. TreeSet is empty, so String.CASE_INSENSITIVE_ORDER is redundant
 		return words.getOrDefault(keyForSearch, new TreeSet<String>(String.CASE_INSENSITIVE_ORDER)).subSet(prefix, getPrefixLimit(prefix));
 	}
 	/**
